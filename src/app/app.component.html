@@ -1,12 +1,12 @@
 <h1>Welcome to the Employee Application</h1>
 
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Favorite food</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi">
-    </mat-form-field>
-
-  </form>
-<button mat-raised-button>Basic</button>
-<button mat-flat-button color="primary">Primary</button>
-<button mat-button color="accent">Accent</button>
+<mat-card *ngIf="!loggedIn">
+  <mat-card-header>
+    <mat-card-title>Login Via</mat-card-title>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-flat-button color="primary">Google</button>
+    <button mat-button color="accent">Github</button>
+  </mat-card-actions>
+</mat-card>
+<app-employee-details *ngIf="loggedIn"></app-employee-details>
