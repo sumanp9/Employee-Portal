@@ -10,6 +10,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   empDetails: Employee[];
 
+  displayColumns = ["id", "firstName", "lastName", "emailId", "role"];
   constructor(private empService: EmployeeServiceService) {
   }
 
