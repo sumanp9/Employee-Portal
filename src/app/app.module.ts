@@ -12,6 +12,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import {FormsModule} from "@angular/forms";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,12 +24,16 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
   imports: [
     BrowserModule,
     OAuthModule.forRoot(),
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

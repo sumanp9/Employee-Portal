@@ -1,12 +1,31 @@
-<h1>Welcome to the Employee Application</h1>
+<mat-toolbar class="center">Welcome to the Employee Application</mat-toolbar>
 
-<mat-card *ngIf="!loggedIn">
+<mat-card *ngIf="loggedIn">
+  <!--
   <mat-card-header>
     <mat-card-title>Login Via</mat-card-title>
   </mat-card-header>
+
   <mat-card-actions>
     <button mat-flat-button color="primary">Google</button>
     <button mat-button color="accent">Github</button>
   </mat-card-actions>
+  -->
 </mat-card>
+
+<form *ngIf="!loggedIn">
+  <mat-form-field>
+  <mat-label>UserName</mat-label>
+  <input [(ngModel)]="userName" name="username" matInput placeholder="UserName">
+  </mat-form-field>
+ <br>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input [(ngModel)]="password" type="password" name="password" matInput placeholder="PassWord">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button *ngIf="!loggedIn" (click)="login()">Login</button>
+  <br>
+  <button mat-raised-button (click)="openBottomSheet()">Hint</button>
+</form>
 <app-employee-details *ngIf="loggedIn"></app-employee-details>
