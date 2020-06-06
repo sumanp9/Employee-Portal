@@ -16,11 +16,15 @@ import {FormsModule} from "@angular/forms";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from "@angular/material/icon";
+import {MatDialogModule} from '@angular/material/dialog';
+import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    AddEmployeeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,
     FormsModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

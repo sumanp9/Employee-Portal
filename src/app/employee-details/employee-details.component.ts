@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Employee, EmployeeServiceService} from "./employee-service/employee-service.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AddEmployeeDialogComponent} from "../add-employee-dialog/add-employee-dialog.component";
 
 @Component({
   selector: 'app-employee-details',
@@ -11,7 +13,8 @@ export class EmployeeDetailsComponent implements OnInit {
   empDetails: Employee[];
 
   displayColumns = ["id", "firstName", "lastName", "emailId", "role"];
-  constructor(private empService: EmployeeServiceService) {
+  constructor(private empService: EmployeeServiceService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -30,4 +33,12 @@ export class EmployeeDetailsComponent implements OnInit {
     } );
   }
 
+  addEmployee() {
+    const dialogRef =  this.dialog.open(AddEmployeeDialogComponent, {
+      width: '350px',
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.refreshPage();
+    })
+  }
 }
