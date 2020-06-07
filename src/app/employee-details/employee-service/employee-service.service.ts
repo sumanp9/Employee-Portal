@@ -29,4 +29,9 @@ export class EmployeeServiceService {
   addEmployees(emp: Employee) {
     return this.http.post(this.baseUrl+ "addEmployee", emp);
   }
+
+  deleteEmployee(id: number) {
+    console.log("Deleting employee")
+    return this.http.delete(this.baseUrl+ "deleteEmployee/"+id);
+  }
 }

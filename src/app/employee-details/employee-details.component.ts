@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Employee, EmployeeServiceService} from "./employee-service/employee-service.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddEmployeeDialogComponent} from "../add-employee-dialog/add-employee-dialog.component";
+import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
+import {last} from "rxjs/operators";
 
 @Component({
   selector: 'app-employee-details',
@@ -29,11 +31,12 @@ export class EmployeeDetailsComponent implements OnInit {
       });
 }
 
-  addEmployee() {
+  addEmployee(): void {
     const dialogRef =  this.dialog.open(AddEmployeeDialogComponent, {
       width: '250px',
       maxWidth: '300px',
-      maxHeight: '450px'
+      maxHeight: '450px',
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe((emp: Employee) => {
       this.empService.addEmployees(emp).subscribe(result => {
@@ -42,5 +45,22 @@ export class EmployeeDetailsComponent implements OnInit {
         console.log("Unable to add employees.")
       });
     })
+  }
+
+  empDelete(employee: Employee): void {
+    const dialogRef =this.dialog.open(AlertDialogComponent, {
+      width: '250px',
+      maxWidth: '300px',
+      data: 'Are you sure you want to delete information about: '+ employee.firstName+ ' '+ employee.lastName,
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.empService.deleteEmployee(employee.id).subscribe(res => {
+          this.refreshPage();
+        }, error => console.log("Unable to delete the employee. Please try again!"));
+      }
+    }, error => console.log("Unable to get data from dialog"))
+
   }
 }
