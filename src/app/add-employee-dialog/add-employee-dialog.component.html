@@ -2,19 +2,21 @@
 <div mat-dialog-content>
   <mat-form-field>
     <mat-label>First Name</mat-label>
-    <input matInput [(ngModel)]="fName">
+    <input matInput [(ngModel)]="emp.firstName">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Last Name</mat-label>
-    <input matInput [(ngModel)]="lName">
+    <input matInput [(ngModel)]="emp.lastName">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Email</mat-label>
-    <input matInput [(ngModel)]="emailId">
+    <input matInput [(ngModel)]="emp.emailId">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Role</mat-label>
-    <input matInput [(ngModel)]="role">
+    <input matInput [(ngModel)]="emp.role">
   </mat-form-field>
-
 </div>
+
+<button mat-raised-button (click)="saveEmp()">Save</button> &nbsp;
+<button mat-raised-button mat-dialog-close>Cancel</button>

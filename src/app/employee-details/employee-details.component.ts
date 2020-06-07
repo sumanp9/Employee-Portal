@@ -12,7 +12,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   empDetails: Employee[];
 
-  displayColumns = ["id", "firstName", "lastName", "emailId", "role"];
+  displayColumns = ["id", "firstName", "lastName", "emailId", "role","delete"];
   constructor(private empService: EmployeeServiceService,
               public dialog: MatDialog) {
   }
@@ -23,22 +23,24 @@ export class EmployeeDetailsComponent implements OnInit {
 
   private refreshPage() {
     //TODO: call emp service and perform API calls to get emp details
-    console.log("In refreshPagew")
     this.empService.getEmployeeDetails().subscribe((result: Array<Employee>) =>{
       console.log("THe list size is: "+ result.length);
       this.empDetails = result;
-      this.empDetails.forEach(emp => {
-        console.log(emp.firstName);
-      })
-    } );
-  }
+      });
+}
 
   addEmployee() {
     const dialogRef =  this.dialog.open(AddEmployeeDialogComponent, {
-      width: '350px',
+      width: '250px',
+      maxWidth: '300px',
+      maxHeight: '450px'
     });
-    dialogRef.afterClosed().subscribe(res => {
-      this.refreshPage();
+    dialogRef.afterClosed().subscribe((emp: Employee) => {
+      this.empService.addEmployees(emp).subscribe(result => {
+        this.refreshPage();
+      }, error => {
+        console.log("Unable to add employees.")
+      });
     })
   }
 }

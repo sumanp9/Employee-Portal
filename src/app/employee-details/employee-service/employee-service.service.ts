@@ -17,10 +17,16 @@ export interface Employee {
 
 export class EmployeeServiceService {
 
-  private baseUrl: "http://localhost:8080/"
-  constructor(private http: HttpClient) { }
+  baseUrl: string;
+  constructor(private http: HttpClient) {
+    this.baseUrl = "http://localhost:8080/"
+  }
 
   getEmployeeDetails(): Observable<Array<Employee>> {
     return this.http.get<Array<Employee>>("http://localhost:8080/employees");
+  }
+
+  addEmployees(emp: Employee) {
+    return this.http.post(this.baseUrl+ "addEmployee", emp);
   }
 }
