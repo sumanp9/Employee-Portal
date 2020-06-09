@@ -1,3 +1,13 @@
-mat-cell, mat-header-cell, mat-footer-cell {
-  padding-right: 10%;
+mat-header-cell{
+  color: cornflowerblue;
+}
+
+mat-table{
+  width: 100%;
+}
+
+.firstName{
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
 }

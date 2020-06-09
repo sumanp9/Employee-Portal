@@ -13,8 +13,9 @@ import {last} from "rxjs/operators";
 export class EmployeeDetailsComponent implements OnInit {
 
   empDetails: Employee[];
+  edit: boolean;
 
-  displayColumns = ["id", "firstName", "lastName", "emailId", "role","delete"];
+  displayColumns = ["id", "firstName", "lastName", "emailId", "role","delete", "details"];
   constructor(private empService: EmployeeServiceService,
               public dialog: MatDialog) {
   }
@@ -62,5 +63,21 @@ export class EmployeeDetailsComponent implements OnInit {
       }
     }, error => console.log("Unable to get data from dialog"))
 
+  }
+
+  details(employee: Employee) {
+
+  }
+
+  editEmployee(employee: Employee) {
+    this.dialog.open(AddEmployeeDialogComponent, {
+      disableClose: true,
+      width: '250px',
+      maxWidth: '300px'
+    })
+  }
+
+  isEdit() {
+    this.edit? this.edit=false: this.edit = true;
   }
 }

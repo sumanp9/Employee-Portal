@@ -1,5 +1,8 @@
 <mat-card>
-  <button mat-icon-button (click)="addEmployee()"><mat-icon color="primary">add</mat-icon></button>
+  <button mat-icon-button (click)="addEmployee()"><mat-icon color="primary">add</mat-icon></button> &nbsp;
+  <button *ngIf="!edit" mat-icon-button (click)="isEdit()"><mat-icon color="primary">edit</mat-icon></button> &nbsp;
+  <button *ngIf="edit" mat-icon-button (click)="isEdit()"><mat-icon color="primary">cancel</mat-icon></button>
+
   <div *ngIf="empDetails">
 
     <mat-table [dataSource]="empDetails" class="mat-elevation-z8">
@@ -11,7 +14,10 @@
 
       <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
-        <mat-cell *matCellDef="let employee"> {{employee.firstName}}</mat-cell>
+        <mat-cell *matCellDef="let employee">
+          <div *ngIf="edit" class="firstName"  (click)="editEmployee(employee)">{{employee.firstName}}</div>
+          <div *ngIf="!edit">{{employee.firstName}}</div>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="lastName">
@@ -19,7 +25,7 @@
         <mat-cell *matCellDef="let employee"> {{employee.lastName}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="emailId" class="email">
+      <ng-container matColumnDef="emailId">
         <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
         <mat-cell *matCellDef="let employee"> {{employee.emailId}}</mat-cell>
       </ng-container>
@@ -31,7 +37,15 @@
 
       <ng-container matColumnDef="delete">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let employee"> <button mat-raised-button color="accent" (click)="empDelete(employee)">Delete</button></mat-cell>
+        <mat-cell *matCellDef="let employee">
+          <button mat-raised-button color="accent" (click)="empDelete(employee)">Delete</button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let employee">
+          <button mat-raised-button color="primary"(click)="details(employee)">Details</button>
+        </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
