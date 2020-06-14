@@ -21,6 +21,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
+import { FbLoginComponent } from './fb-login/fb-login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EmpDetailsComponent } from './emp-details/emp-details.component';
     EmployeeDetailsComponent,
     AddEmployeeDialogComponent,
     AlertDialogComponent,
-    EmpDetailsComponent
+    EmpDetailsComponent,
+    FbLoginComponent
   ],
   imports: [
     BrowserModule,
