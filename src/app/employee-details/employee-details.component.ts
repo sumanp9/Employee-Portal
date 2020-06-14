@@ -4,6 +4,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddEmployeeDialogComponent} from "../add-employee-dialog/add-employee-dialog.component";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {last} from "rxjs/operators";
+import {EmpDetailsComponent} from "../emp-details/emp-details.component";
 
 @Component({
   selector: 'app-employee-details',
@@ -13,6 +14,7 @@ import {last} from "rxjs/operators";
 export class EmployeeDetailsComponent implements OnInit {
 
   empDetails: Employee[];
+  emp: Employee;
   edit: boolean;
 
   displayColumns = ["id", "firstName", "lastName", "emailId", "role","delete", "details"];
@@ -33,11 +35,13 @@ export class EmployeeDetailsComponent implements OnInit {
 }
 
   addEmployee(): void {
+
     const dialogRef =  this.dialog.open(AddEmployeeDialogComponent, {
       width: '250px',
       maxWidth: '300px',
       maxHeight: '450px',
-      disableClose: true
+      disableClose: true,
+      data: this.emp
     });
     dialogRef.afterClosed().subscribe((emp: Employee) => {
       this.empService.addEmployees(emp).subscribe(result => {
@@ -67,14 +71,29 @@ export class EmployeeDetailsComponent implements OnInit {
 
   details(employee: Employee) {
 
+    const dialogRef =  this.dialog.open(EmpDetailsComponent, {
+      disableClose: true,
+      width: '250px',
+      maxWidth: '300px',
+      data: employee
+    });
+
   }
 
   editEmployee(employee: Employee) {
-    this.dialog.open(AddEmployeeDialogComponent, {
+    const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
       disableClose: true,
       width: '250px',
-      maxWidth: '300px'
+      maxWidth: '300px',
+      data: employee
     })
+
+    dialogRef.afterClosed().subscribe((emp) =>{
+      this.empService.addEmployees(emp).subscribe((res) => {
+        this.refreshPage();
+      }, error => console.error("Unable to save employee. ", error));
+    })
+
   }
 
   isEdit() {

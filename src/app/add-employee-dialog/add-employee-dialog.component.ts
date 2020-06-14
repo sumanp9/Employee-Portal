@@ -11,16 +11,18 @@ export class AddEmployeeDialogComponent implements OnInit {
   emp: Employee;
 
   constructor(public dialogRef: MatDialogRef<AddEmployeeDialogComponent>,
+              @Inject(MAT_DIALOG_DATA)public employee: Employee
               ) {
-    this.emp = {id: null, firstName: '', lastName: '', emailId: '', role: ''};
   }
 
   ngOnInit(): void {
+    this.employee == null?
+      this.emp = {id: null, firstName: '', lastName: '', emailId: '', role: ''}:
+      this.emp = this.employee;
 
   }
 
   saveEmp() {
-
     if (this.emp.emailId != "" && this.emp.lastName != "" && this.emp.firstName !=""){
       this.dialogRef.close(this.emp);
     } else {

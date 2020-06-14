@@ -1,1 +1,8 @@
-<p>emp-details works!</p>
+<h1>{{emp.firstName+ " " +emp.lastName }} <mat-icon style="float: right; cursor: pointer" (click)="printEmpDetails()">print</mat-icon></h1>
+<br>
+  <h5>Employee Id: {{emp.id}}</h5>
+<h5>Email:  <a href="mailto:{{emp.emailId}}" >{{emp.emailId}}</a></h5>
+  <h5>Role: {{emp.role}}</h5>
+
+
+

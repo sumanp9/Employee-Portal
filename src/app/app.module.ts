@@ -20,13 +20,15 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { EmpDetailsComponent } from './emp-details/emp-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeDetailsComponent,
     AddEmployeeDialogComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    EmpDetailsComponent
   ],
   imports: [
     BrowserModule,
